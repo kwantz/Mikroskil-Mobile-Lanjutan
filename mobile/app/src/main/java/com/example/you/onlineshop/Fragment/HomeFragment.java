@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
 
     private View view;
     private CarouselView carousel;
-    private LinearLayout viewContent, viewLoading, viewError;
+    private LinearLayout viewContent, viewLoading, viewError, viewNewItem;
     private RecyclerView rvCategory, rvNewItem, rvRecommended, rvTopItem;
 
     private int[] ads = { R.drawable.ad_1, R.drawable.ad_2, R.drawable.ad_3 };
@@ -67,6 +67,7 @@ public class HomeFragment extends Fragment {
         this.viewContent = view.findViewById(R.id.content_success);
         this.viewLoading = view.findViewById(R.id.content_loading);
         this.viewError = view.findViewById(R.id.content_error);
+        this.viewNewItem = view.findViewById(R.id.content_homepage_new_item);
 
         this.loadView();
         this.setCarousel();
@@ -142,11 +143,17 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful()) {
                     List<Barang> data = response.body();
 
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-                    RecyclerView.Adapter adapter = new NewItemAdapter(data);
+                    if (data.size() != 0) {
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                        RecyclerView.Adapter adapter = new NewItemAdapter(data);
 
-                    rvNewItem.setLayoutManager(layoutManager);
-                    rvNewItem.setAdapter(adapter);
+                        rvNewItem.setLayoutManager(layoutManager);
+                        rvNewItem.setAdapter(adapter);
+                        viewNewItem.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        viewNewItem.setVisibility(View.GONE);
+                    }
 
                     isNewItemFinished = VIEW_SUCCESS;
                     loadView();

@@ -29,13 +29,11 @@
         android:layout_below="@id/gambar"/>
 
     <TextView
-        android:id="@+id/harga_sesudah_diskon"
+        android:id="@+id/diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_below="@id/barang"
-        android:text="Harga"/>
+        android:text="-20%"
+        android:layout_below="@id/barang"/>
 
     <TextView
         android:id="@+id/harga_sebelum_diskon"
@@ -44,13 +42,15 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="harga"
-        android:layout_below="@id/harga_sesudah_diskon"/>
+        android:layout_below="@id/diskon"/>
 
     <TextView
-        android:id="@+id/diskon"
+        android:id="@+id/harga_sesudah_diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="-20%"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@id/harga_sebelum_diskon"/>
+        android:textColor="@color/colorSecondary"
+        android:textStyle="bold"
+        android:layout_below="@id/harga_sebelum_diskon"
+        android:text="Harga"/>
+
 </RelativeLayout>

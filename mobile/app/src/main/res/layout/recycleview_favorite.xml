@@ -2,8 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#fff"
-    android:layout_width="150dp"
+    android:background="@color/text"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -15,7 +15,7 @@
         android:id="@+id/gambar"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
@@ -26,14 +26,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="Title"
-        android:layout_below="@id/gambar"/>
-
-    <TextView
-        android:id="@+id/diskon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="-20%"
-        android:layout_below="@id/barang"/>
+        android:layout_toRightOf="@id/gambar"/>
 
     <TextView
         android:id="@+id/harga_sebelum_diskon"
@@ -42,7 +35,17 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="harga"
-        android:layout_below="@id/diskon"/>
+        android:layout_below="@id/barang"
+        android:layout_toRightOf="@id/gambar"/>
+
+    <TextView
+        android:id="@+id/diskon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-20%"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/barang"
+        android:layout_toRightOf="@id/harga_sebelum_diskon"/>
 
     <TextView
         android:id="@+id/harga_sesudah_diskon"
@@ -50,15 +53,19 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorSecondary"
         android:textStyle="bold"
+        android:layout_toRightOf="@id/gambar"
         android:layout_below="@id/harga_sebelum_diskon"
         android:text="Harga"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/beli"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:background="@color/colorSecondary"
         android:textColor="@color/text"
-        android:textSize="10dp"
-        android:text="NEW"/>
+        android:textStyle="bold"
+        android:text="Beli"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/barang"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>
