@@ -5,22 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.you.onlineshop.Model.Barang;
 import com.example.you.onlineshop.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TopAdapter extends RecyclerView.Adapter<TopAdapter.ViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private View view;
     private List<Barang> listBarang;
 
-    public TopAdapter(List<Barang> listBarang) {
+    public ItemAdapter(List<Barang> listBarang) {
         this.listBarang = listBarang;
     }
 
@@ -40,7 +38,7 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleview_top, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleview_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

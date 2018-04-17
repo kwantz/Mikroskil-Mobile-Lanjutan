@@ -29,16 +29,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.initView();
-        this.initToolbar();
-        this.initBottomNavigation();
-    }
-
-    private void initView() {
         this.navigation = findViewById(R.id.navigation);
         this.mainContent = findViewById(R.id.wow_1);
         this.searchContent = findViewById(R.id.search_content);
         this.toolbar = findViewById(R.id.toolbar);
+
+        this.initToolbar();
+        this.initBottomNavigation();
     }
 
     private BottomNavigationViewHelper helper;
