@@ -8,9 +8,9 @@ class Order extends Model
 {
     protected $table = 'order';
 
-    public function barang()
+    public function keranjang()
     {
-        return $this->hasOne('App\Models\Barang', 'id', 'id_barang');
+        return $this->hasOne('App\Models\KeranjangBelanja', 'id', 'id_keranjang');
     }
     
     public function transaksi()
