@@ -29,13 +29,11 @@
         android:layout_below="@id/gambar"/>
 
     <TextView
-        android:id="@+id/harga_sesudah_diskon"
+        android:id="@+id/diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:layout_below="@id/barang"
-        android:text="Harga"/>
+        android:text="-20%"
+        android:layout_below="@id/barang"/>
 
     <TextView
         android:id="@+id/harga_sebelum_diskon"
@@ -44,24 +42,23 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="harga"
-        android:layout_below="@id/harga_sesudah_diskon"/>
+        android:layout_below="@id/diskon"/>
 
     <TextView
-        android:id="@+id/diskon"
+        android:id="@+id/harga_sesudah_diskon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="-20%"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@id/harga_sebelum_diskon"/>
-
-    <Button
-        android:id="@+id/beli"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="#fff"
+        android:textColor="@color/colorSecondary"
         android:textStyle="bold"
-        android:text="Beli"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@id/diskon"/>
+        android:layout_below="@id/harga_sebelum_diskon"
+        android:text="Harga"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorSecondary"
+        android:textColor="@color/text"
+        android:textSize="10dp"
+        android:text="NEW"/>
 </RelativeLayout>

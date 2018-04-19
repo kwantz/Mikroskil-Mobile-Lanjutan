@@ -42,10 +42,7 @@ public class BottomNavigationViewHelper {
         this.FRAGMENT_ACTIVE = this.homeFragment;
 
         this.fragmentManager = activity.getSupportFragmentManager();
-        this.fragmentManager.beginTransaction().add(content, this.homeFragment).commit();
-        this.fragmentManager.beginTransaction().add(content, this.profileFragment).hide(this.profileFragment).commit();
-        this.fragmentManager.beginTransaction().add(content, this.favoriteFragment).hide(this.favoriteFragment).commit();
-        this.fragmentManager.beginTransaction().add(content, this.keranjangFragment).hide(this.keranjangFragment).commit();
+        this.fragmentManager.beginTransaction().add(content, this.homeFragment, "homeFragment").commit();
     }
 
 
@@ -78,16 +75,16 @@ public class BottomNavigationViewHelper {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        changeNavigationItemSelected(homeFragment);
+                        changeNavigationItemSelected(homeFragment, "homeFragment");
                         return true;
                     case R.id.navigation_favorite:
-                        changeNavigationItemSelected(favoriteFragment);
+                        changeNavigationItemSelected(favoriteFragment, "favoriteFragment");
                         return true;
                     case R.id.navigation_keranjang:
-                        changeNavigationItemSelected(keranjangFragment);
+                        changeNavigationItemSelected(keranjangFragment, "keranjangFragment");
                         return true;
                     case R.id.navigation_profile:
-                        changeNavigationItemSelected(profileFragment);
+                        changeNavigationItemSelected(profileFragment, "profileFragment");
                         return true;
                 }
                 return false;
@@ -95,9 +92,21 @@ public class BottomNavigationViewHelper {
         };
     }
 
-    private void changeNavigationItemSelected(Fragment fragment) {
-        if (FRAGMENT_ACTIVE == null) this.fragmentManager.beginTransaction().show(fragment).commit();
-        else this.fragmentManager.beginTransaction().hide(FRAGMENT_ACTIVE).show(fragment).commit();
+    private void changeNavigationItemSelected(Fragment fragment, String tag) {
+        int content = R.id.content;
+        if (this.fragmentManager.findFragmentByTag(tag) == null) {
+            this.fragmentManager.beginTransaction()
+                    .add(content, fragment, tag)
+                    .hide(FRAGMENT_ACTIVE)
+                    .show(fragment)
+                    .commit();
+        }
+        else {
+            this.fragmentManager.beginTransaction()
+                    .hide(FRAGMENT_ACTIVE)
+                    .show(fragment)
+                    .commit();
+        }
 
         FRAGMENT_ACTIVE = fragment;
         Log.e("OnlineShop Mobile Apps", "class BottomNavigationViewHelper ===> function changeNavigationItemSelected");
