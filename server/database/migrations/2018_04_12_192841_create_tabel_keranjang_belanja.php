@@ -18,6 +18,7 @@ class CreateTabelKeranjangBelanja extends Migration
             $table->integer('id_pengguna');
             $table->integer('id_barang');
             $table->integer('jumlah');
+            $table->string('catatan');
             $table->timestamps();
         });
     }

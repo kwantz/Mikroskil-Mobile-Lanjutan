@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTabelKategori extends Migration
+class CreateFavoritTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTabelKategori extends Migration
      */
     public function up()
     {
-        Schema::create('kategori', function (Blueprint $table) {
+        Schema::create('favorit', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->binary('icon');
+            $table->integer('id_pengguna');
+            $table->integer('id_barang');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTabelKategori extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori');
+        Schema::dropIfExists('favorit');
     }
 }

@@ -16,9 +16,7 @@ class CreateTabelOrder extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_transaksi');
-            $table->integer('id_barang');
-            $table->integer('jumlah');
-            $table->string('catatan');
+            $table->integer('id_keranjang');
             $table->timestamps();
         });
     }

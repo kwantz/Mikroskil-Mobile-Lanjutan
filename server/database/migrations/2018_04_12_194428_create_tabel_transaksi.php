@@ -17,10 +17,10 @@ class CreateTabelTransaksi extends Migration
             $table->increments('id');
             $table->integer('id_pengguna');
             $table->date('tanggal_transaksi');
-            $table->string('invoice',50);
-            $table->string('no_resi',50);
-            $table->string('no_va',50);
-            $table->boolean('status');
+            $table->string('invoice');
+            $table->string('no_resi');
+            $table->string('no_va');
+            $table->string('status');
             $table->timestamps();
         });
     }
