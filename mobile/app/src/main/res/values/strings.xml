@@ -10,6 +10,8 @@
     <string name="error_title">Kamu sedang dalam mode offline</string>
     <string name="error_description">Silakan mengaktifkan paket data atau Wi-fi anda agar dapat menggunakan aplikasi ini.</string>
 
-    <string name="favorite_empty_title">Barang favorite kosong</string>
+    <string name="favorite_empty_title">Barang favorite anda kosong</string>
     <string name="favorite_empty_description">Tekan tombol hati yang terdapat di kanan atas informasi barang pada barang yang anda suka.</string>
+
+    <string name="keranjang_empty_title">Keranjang belanja anda kosong</string>
 </resources>

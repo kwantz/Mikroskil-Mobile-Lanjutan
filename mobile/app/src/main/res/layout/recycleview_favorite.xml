@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/text"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="132dp"
     android:layout_margin="1dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,15 +12,14 @@
 
     <ImageView
         android:id="@+id/gambar"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
     <TextView
         android:id="@+id/barang"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textColor="#000"
         android:ellipsize="end"
         android:maxLines="2"
@@ -35,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="harga"
-        android:layout_below="@id/barang"
+        android:layout_below="@id/diskon"
         android:layout_toRightOf="@id/gambar"/>
 
     <TextView
@@ -43,9 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-20%"
-        android:layout_marginLeft="5dp"
         android:layout_below="@id/barang"
-        android:layout_toRightOf="@id/harga_sebelum_diskon"/>
+        android:layout_toRightOf="@id/gambar"/>
 
     <TextView
         android:id="@+id/harga_sesudah_diskon"
@@ -57,15 +54,10 @@
         android:layout_below="@id/harga_sebelum_diskon"
         android:text="Harga"/>
 
-    <Button
-        android:id="@+id/beli"
-        android:layout_width="100dp"
+    <include layout="@layout/button_beli"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorSecondary"
-        android:textColor="@color/text"
-        android:textStyle="bold"
-        android:text="Beli"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/barang"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
+
 </RelativeLayout>

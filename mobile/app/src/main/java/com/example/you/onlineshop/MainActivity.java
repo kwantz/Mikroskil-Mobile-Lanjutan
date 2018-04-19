@@ -58,5 +58,4 @@ public class MainActivity extends AppCompatActivity {
         searchMenuItem.setOnActionExpandListener(toolbarSearch.setOnActionExpandListener());
         searchView.setOnQueryTextListener(toolbarSearch.setOnQueryTextListener());
     }
-
 }
