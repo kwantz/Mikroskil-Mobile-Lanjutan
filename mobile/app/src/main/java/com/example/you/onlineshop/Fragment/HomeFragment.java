@@ -253,4 +253,5 @@ public class HomeFragment extends Fragment {
         ((MainActivity)getActivity()).testing(menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
 }

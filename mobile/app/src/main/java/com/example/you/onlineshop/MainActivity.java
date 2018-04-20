@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
+    public String fragmentTagSavedInstance = "homeFragment";
     private Toolbar toolbar;
     private BottomNavigationView navigation;
     private LinearLayout mainContent;
@@ -27,27 +28,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            fragmentTagSavedInstance = savedInstanceState.getString("FRAGMENT_TAG");
+        }
+
+        initView();
+        initBottomNavigation();
+        setSupportActionBar(toolbar);
+    }
+
+    private void initView() {
         setContentView(R.layout.activity_main);
 
-        this.navigation = findViewById(R.id.navigation);
-        this.mainContent = findViewById(R.id.wow_1);
-        this.searchContent = findViewById(R.id.search_content);
-        this.toolbar = findViewById(R.id.toolbar);
-
-        this.initToolbar();
-        this.initBottomNavigation();
+        navigation = findViewById(R.id.navigation);
+        mainContent = findViewById(R.id.wow_1);
+        searchContent = findViewById(R.id.search_content);
+        toolbar = findViewById(R.id.toolbar);
     }
 
-    private BottomNavigationViewHelper helper;
     private void initBottomNavigation() {
-        this.helper = new BottomNavigationViewHelper(this);
+        BottomNavigationViewHelper helper = new BottomNavigationViewHelper(this, fragmentTagSavedInstance);
 
-        helper.removeShiftMode(this.navigation);
-        this.navigation.setOnNavigationItemSelectedListener(helper.setOnNavigationItemSelectedListener());
-    }
-
-    private void initToolbar() {
-        setSupportActionBar(this.toolbar);
+        helper.removeShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(helper.setOnNavigationItemSelectedListener);
     }
 
     public void testing(Menu menu) {
@@ -57,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
         ToolbarSearch toolbarSearch = new ToolbarSearch(mainContent, searchContent);
         searchMenuItem.setOnActionExpandListener(toolbarSearch.setOnActionExpandListener());
         searchView.setOnQueryTextListener(toolbarSearch.setOnQueryTextListener());
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("FRAGMENT_TAG", fragmentTagSavedInstance);
     }
 }

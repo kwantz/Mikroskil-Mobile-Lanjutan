@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.example.you.onlineshop.Adapter.FavoriteAdapter;
 import com.example.you.onlineshop.Adapter.TopItemAdapter;
+import com.example.you.onlineshop.Library.DisplayView;
 import com.example.you.onlineshop.Library.OnlineShopService;
 import com.example.you.onlineshop.Library.RetrofitBaseUrl;
 import com.example.you.onlineshop.MainActivity;
@@ -29,16 +30,13 @@ import retrofit2.Retrofit;
 
 public class FavoriteFragment extends Fragment {
 
-    private int VIEW_SUCCESS = 1;
-    private int VIEW_PENDING = 0;
-    private int VIEW_ERROR = -1;
-
-    private int isFavoriteFinished = VIEW_PENDING;
-    private int isTopItemFinished = VIEW_PENDING;
+    private final String TOP_ITEM_TAG = "topItem";
+    private final String FAVORITE_TAG = "favorite";
 
     private View view;
     private RecyclerView rvTopItem, rvFavoriteItem;
-    private LinearLayout viewContent, viewLoading, viewError, contentFavoriteList, contentFavoriteEmpty;
+    private LinearLayout contentFavoriteList, contentFavoriteEmpty;
+    private DisplayView displayView;
 
     public FavoriteFragment() { }
 
@@ -46,19 +44,28 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        this.view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        this.rvTopItem = this.view.findViewById(R.id.rv_top_item);
-        this.rvFavoriteItem = this.view.findViewById(R.id.rv_favorite_item);
-        this.viewContent = this.view.findViewById(R.id.content_success);
-        this.viewLoading = this.view.findViewById(R.id.content_loading);
-        this.viewError = this.view.findViewById(R.id.content_error);
-        this.contentFavoriteList = this.view.findViewById(R.id.content_favorite_list);
-        this.contentFavoriteEmpty = this.view.findViewById(R.id.content_favorite_empty);
+        initView(inflater, container);
+        initDisplayView();
 
-        this.loadView();
-        this.setRecycleViewFavoriteItem();
-        this.setRecycleViewTopItem();
-        return this.view;
+        setRecycleViewFavoriteItem();
+        setRecycleViewTopItem();
+
+        return view;
+    }
+
+    private void initView(LayoutInflater inflater, ViewGroup container) {
+        view = inflater.inflate(R.layout.fragment_favorite, container, false);
+        rvTopItem = view.findViewById(R.id.rv_top_item);
+        rvFavoriteItem = view.findViewById(R.id.rv_favorite_item);
+        contentFavoriteList = view.findViewById(R.id.content_favorite_list);
+        contentFavoriteEmpty = view.findViewById(R.id.content_favorite_empty);
+    }
+
+    private void initDisplayView() {
+        displayView = new DisplayView(view);
+        displayView.addRequirement(TOP_ITEM_TAG);
+        displayView.addRequirement(FAVORITE_TAG);
+        displayView.loadView();
     }
 
     private void setRecycleViewFavoriteItem() {
@@ -88,15 +95,15 @@ public class FavoriteFragment extends Fragment {
                         contentFavoriteList.setVisibility(View.GONE);
                     }
 
-                    isFavoriteFinished = VIEW_SUCCESS;
-                    loadView();
+                    displayView.successRequirement(FAVORITE_TAG);
+                    displayView.loadView();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Barang>> call, Throwable t) {
-                isFavoriteFinished = VIEW_ERROR;
-                loadView();
+                displayView.errorRequirement(FAVORITE_TAG);
+                displayView.loadView();
             }
         });
     }
@@ -118,35 +125,17 @@ public class FavoriteFragment extends Fragment {
                     rvTopItem.setLayoutManager(layoutManager);
                     rvTopItem.setAdapter(adapter);
 
-                    isTopItemFinished = VIEW_SUCCESS;
-                    loadView();
+                    displayView.successRequirement(TOP_ITEM_TAG);
+                    displayView.loadView();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Barang>> call, Throwable t) {
-                isTopItemFinished = VIEW_ERROR;
-                loadView();
+                displayView.errorRequirement(TOP_ITEM_TAG);
+                displayView.loadView();
             }
         });
-    }
-
-    private void loadView() {
-        if (isFavoriteFinished == VIEW_ERROR || isTopItemFinished == VIEW_ERROR) {
-            this.viewError.setVisibility(View.VISIBLE);
-            this.viewContent.setVisibility(View.GONE);
-            this.viewLoading.setVisibility(View.GONE);
-        }
-        else if (isFavoriteFinished == VIEW_SUCCESS && isTopItemFinished == VIEW_SUCCESS) {
-            this.viewError.setVisibility(View.GONE);
-            this.viewContent.setVisibility(View.VISIBLE);
-            this.viewLoading.setVisibility(View.GONE);
-        }
-        else {
-            this.viewError.setVisibility(View.GONE);
-            this.viewContent.setVisibility(View.GONE);
-            this.viewLoading.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override

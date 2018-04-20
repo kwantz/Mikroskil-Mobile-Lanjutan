@@ -24,27 +24,58 @@ import java.lang.reflect.Field;
 
 public class BottomNavigationViewHelper {
 
+    private final int CONTENT = R.id.content;
+    private final String HOME_FRAGMENT_TAG = "home";
+    private final String PROFILE_FRAGMENT_TAG = "profile";
+    private final String FAVORITE_FRAGMENT_TAG = "favorite";
+    private final String KERANJANG_FRAGMENT_TAG = "keranjang";
+
+    private MainActivity activity;
     private HomeFragment homeFragment;
     private ProfileFragment profileFragment;
     private FavoriteFragment favoriteFragment;
     private KeranjangFragment keranjangFragment;
 
-    private Fragment FRAGMENT_ACTIVE = null;
+    private Fragment fragmentActive = null;
     private FragmentManager fragmentManager;
 
-    public BottomNavigationViewHelper(MainActivity activity) {
-        int content = R.id.content;
+    public BottomNavigationViewHelper(MainActivity activity, String tag) {
+        this.activity = activity;
         this.homeFragment = new HomeFragment();
         this.profileFragment = new ProfileFragment();
         this.favoriteFragment = new FavoriteFragment();
         this.keranjangFragment = new KeranjangFragment();
-
-        this.FRAGMENT_ACTIVE = this.homeFragment;
-
         this.fragmentManager = activity.getSupportFragmentManager();
-        this.fragmentManager.beginTransaction().add(content, this.homeFragment, "homeFragment").commit();
+
+        this.setFragment(tag);
     }
 
+    private void setFragment(String tag) {
+        if (tag.equals(FAVORITE_FRAGMENT_TAG)) {
+            this.fragmentActive = this.favoriteFragment;
+            this.fragmentManager.beginTransaction()
+                .replace(CONTENT, this.favoriteFragment, FAVORITE_FRAGMENT_TAG)
+                .commit();
+        }
+        else if (tag.equals(KERANJANG_FRAGMENT_TAG)) {
+            this.fragmentActive = this.keranjangFragment;
+            this.fragmentManager.beginTransaction()
+                .replace(CONTENT, this.keranjangFragment, KERANJANG_FRAGMENT_TAG)
+                .commit();
+        }
+        else if (tag.equals(PROFILE_FRAGMENT_TAG)) {
+            this.fragmentActive = this.profileFragment;
+            this.fragmentManager.beginTransaction()
+                .replace(CONTENT, this.profileFragment, PROFILE_FRAGMENT_TAG)
+                .commit();
+        }
+        else {
+            this.fragmentActive = this.homeFragment;
+            this.fragmentManager.beginTransaction()
+                .replace(CONTENT, this.homeFragment, HOME_FRAGMENT_TAG)
+                .commit();
+        }
+    }
 
     @SuppressLint("RestrictedApi")
     public void removeShiftMode(BottomNavigationView view) {
@@ -56,10 +87,11 @@ public class BottomNavigationViewHelper {
             shiftingMode.setAccessible(false);
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                //noinspection RestrictedApi
-//                item.setShiftingMode(false);
+                // noinspection RestrictedApi
+                // item.setShiftingMode(false);
+
                 // set once again checked value, so view will be updated
-                //noinspection RestrictedApi
+                // noinspection RestrictedApi
                 item.setChecked(item.getItemData().isChecked());
             }
         } catch (NoSuchFieldException e) {
@@ -69,46 +101,40 @@ public class BottomNavigationViewHelper {
         }
     }
 
-    public BottomNavigationView.OnNavigationItemSelectedListener setOnNavigationItemSelectedListener() {
-        return new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        changeNavigationItemSelected(homeFragment, "homeFragment");
-                        return true;
-                    case R.id.navigation_favorite:
-                        changeNavigationItemSelected(favoriteFragment, "favoriteFragment");
-                        return true;
-                    case R.id.navigation_keranjang:
-                        changeNavigationItemSelected(keranjangFragment, "keranjangFragment");
-                        return true;
-                    case R.id.navigation_profile:
-                        changeNavigationItemSelected(profileFragment, "profileFragment");
-                        return true;
-                }
-                return false;
-            }
-        };
-    }
+    public BottomNavigationView.OnNavigationItemSelectedListener setOnNavigationItemSelectedListener = (item) -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                changeNavigationItemSelected(homeFragment, HOME_FRAGMENT_TAG);
+                return true;
+            case R.id.navigation_favorite:
+                changeNavigationItemSelected(favoriteFragment, FAVORITE_FRAGMENT_TAG);
+                return true;
+            case R.id.navigation_keranjang:
+                changeNavigationItemSelected(keranjangFragment, KERANJANG_FRAGMENT_TAG);
+                return true;
+            case R.id.navigation_profile:
+                changeNavigationItemSelected(profileFragment, PROFILE_FRAGMENT_TAG);
+                return true;
+        }
+        return false;
+    };
 
     private void changeNavigationItemSelected(Fragment fragment, String tag) {
-        int content = R.id.content;
         if (this.fragmentManager.findFragmentByTag(tag) == null) {
             this.fragmentManager.beginTransaction()
-                    .add(content, fragment, tag)
-                    .hide(FRAGMENT_ACTIVE)
-                    .show(fragment)
-                    .commit();
+                .add(CONTENT, fragment, tag)
+                .hide(fragmentActive)
+                .show(fragment)
+                .commit();
         }
         else {
             this.fragmentManager.beginTransaction()
-                    .hide(FRAGMENT_ACTIVE)
-                    .show(fragment)
-                    .commit();
+                .hide(fragmentActive)
+                .show(fragment)
+                .commit();
         }
 
-        FRAGMENT_ACTIVE = fragment;
-        Log.e("OnlineShop Mobile Apps", "class BottomNavigationViewHelper ===> function changeNavigationItemSelected");
+        fragmentActive = fragment;
+        this.activity.fragmentTagSavedInstance = tag;
     }
 }
