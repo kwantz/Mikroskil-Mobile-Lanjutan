@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text">
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="16dp">
+
+        <TextView android:text="Email Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/textPrimary"/>
+
+        <TextView android:text="erick.kwantan@gmail.com"
+            android:id="@+id/profile_email"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorSecondary" />
+    </LinearLayout>
+
+    <include layout="@layout/content_divider"/>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="16dp">
+
+        <TextView android:text="Phone Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/textPrimary"/>
+
+        <TextView android:text="087768114297"
+            android:id="@+id/profile_number"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorSecondary"/>
+    </LinearLayout>
+
+    <include layout="@layout/content_divider"/>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="16dp">
+
+        <TextView android:text="Address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@color/textPrimary"/>
+
+        <ImageView app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+            android:tint="@color/textSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+    <include layout="@layout/content_divider"/>
+
+    <Button android:text="Edit Profile"
+        android:id="@+id/btn_edit"
+        android:background="@color/colorSecondary"
+        android:textColor="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
+</LinearLayout>

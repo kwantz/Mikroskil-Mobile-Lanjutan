@@ -1,0 +1,29 @@
+{
+    "[javascript]": {
+        "editor.tabSize": 2,
+    },
+
+    "files.associations": {
+        "*.twig": "html"
+    },
+
+    "window.zoomLevel": -1,
+
+    "editor.wordWrap": "off",
+    "editor.letterSpacing": 1,
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": false,
+    "editor.detectIndentation": true,
+
+    "typescript.check.npmIsInstalled": false,
+
+    "git.ignoreLegacyWarning": true,
+
+    "extensions.ignoreRecommendations": true,
+
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": false
+}

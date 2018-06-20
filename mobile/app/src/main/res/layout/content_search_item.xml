@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/content_success">
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView android:text="Search's result for   "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView android:id="@+id/search_result"
+            android:text="Search Result"
+            android:textStyle="bold"
+            android:textColor="@color/colorSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <include layout="@layout/content_divider"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/rv_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ScrollView android:id="@+id/content_not_found"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView app:srcCompat="@drawable/ic_do_not_disturb_alt_24dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <TextView android:text="Barang tidak ditemukan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <include layout="@layout/content_divider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/text">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="15sp"
+                    android:padding="16dp"
+                    android:text="Barang Rekomendasi" />
+            </LinearLayout>
+
+            <include layout="@layout/content_divider"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

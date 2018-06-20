@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/btn_beli"
+    android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/colorSecondary"
-    android:textColor="@color/text"
-    android:textStyle="bold"
-    android:text="Beli"/>
+    android:paddingTop="@dimen/button_vertical_margin"
+    android:paddingLeft="@dimen/button_horizontal_margin"
+    android:paddingRight="@dimen/button_horizontal_margin"
+    android:paddingBottom="@dimen/button_vertical_margin"
+    android:gravity="center">
+
+    <ImageView android:tint="@color/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/button_horizontal_margin"
+        app:srcCompat="@drawable/ic_shopping_cart_24dp"/>
+
+    <TextView android:text="KERANJANG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="15sp" />
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:text="Category"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Komputer"/>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:text="Price   "
+            android:textStyle="bold"
+            android:textColor="@color/textPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/item_discount_persentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-30%"
+            android:textColor="@color/colorSecondary"/>
+    </LinearLayout>
+
+    <TextView android:id="@+id/item_price"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/item_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSecondary"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView android:text="Stock Left"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/item_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="98"/>
+</LinearLayout>

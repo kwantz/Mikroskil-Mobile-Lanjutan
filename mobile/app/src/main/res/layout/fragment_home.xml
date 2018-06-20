@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.you.onlineshop.Fragment.HomeFragment"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <include layout="@layout/toolbar_home"/>
+
+    <ScrollView android:id="@+id/content_success"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
 
-        <LinearLayout
-            android:id="@+id/content_success"
-            android:orientation="vertical"
+        <LinearLayout android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/content_homepage_carousel"/>
-            <include layout="@layout/content_homepage_category"/>
-            <include layout="@layout/content_homepage_new_item"/>
-            <include layout="@layout/content_homepage_top_item"/>
-            <include layout="@layout/content_homepage_recommended_item"/>
+            <include layout="@layout/content_home_carousel"/>
+            <include layout="@layout/content_home_category"/>
+            <include layout="@layout/content_home_new_item"/>
+            <include layout="@layout/content_home_top_item"/>
+            <include layout="@layout/content_home_recommended_item"/>
         </LinearLayout>
 
-        <include layout="@layout/content_loading"/>
-        <include layout="@layout/content_error"/>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <include layout="@layout/content_display_error_and_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
+</android.support.constraint.ConstraintLayout>

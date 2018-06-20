@@ -1,0 +1,7 @@
+{
+  "env": {
+    "NODE_ENV": "development",
+    "JWT_SECRET": "jwtsecret",
+    "JWT_ALGORITHM": "HS256"
+  }
+}
