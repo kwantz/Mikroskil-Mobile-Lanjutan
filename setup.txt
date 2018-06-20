@@ -1,0 +1,14 @@
+1. buka XAMPP, Apache dan MySQL
+2. git clone https://github.com/kwantz/Mikroskil-Mobile-Lanjutan.git
+3. cd Mikroskil-Mobile-Lanjutan
+4. cd server
+5. npm install
+6. npm start
+7. buka http://localhost/phpmyadmin
+8. buka database 'test'
+9. import category.sql dan item.sql pada folder root project
+10. laptop dan smartphone yang ingin digunakan harap konek ke wifi yang sama
+11. buka cmd, ketik ipconfig, lalu copy ip pada bagian 'IPv4 Address'
+10. buka Android Studio dan buka project mobile
+11. pada library/RetrofitLibrary.java, paste ip tersebut kedalam BASE_URL dengan port 3000
+12. compile
