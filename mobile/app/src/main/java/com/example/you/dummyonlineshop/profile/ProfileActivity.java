@@ -13,7 +13,7 @@ import com.example.you.dummyonlineshop.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class ProfileActivity  extends AppCompatActivity implements ProfileContract.View {
+public class ProfileActivity extends AppCompatActivity implements ProfileContract.View {
 
     private Button btnConfirm;
     private EditText inputName;

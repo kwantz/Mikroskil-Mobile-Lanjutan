@@ -2,6 +2,7 @@ package com.example.you.dummyonlineshop.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +19,7 @@ import com.example.you.dummyonlineshop.data.Base;
 import com.example.you.dummyonlineshop.data.Item;
 import com.example.you.dummyonlineshop.data.Cart;
 import com.example.you.dummyonlineshop.data.post.CartBody;
+import com.example.you.dummyonlineshop.edititemcart.EditItemCartActivity;
 import com.example.you.dummyonlineshop.library.RetrofitLibrary;
 import com.example.you.dummyonlineshop.service.OnlineShopService;
 import com.squareup.picasso.Picasso;
@@ -45,7 +47,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
         private TextView hargaTotal;
         private TextView catatan;
         private ImageView gambar;
-        private ImageView btnRemove;
+        private ImageView btnEdit;
 
         public ViewHolder(View view) {
             super(view);
@@ -55,7 +57,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
             this.barang = view.findViewById(R.id.item_name);
             this.catatan = view.findViewById(R.id.input_note);
             this.hargaTotal = view.findViewById(R.id.price_total);
-            this.btnRemove = view.findViewById(R.id.btn_remove);
+            this.btnEdit = view.findViewById(R.id.btn_edit);
         }
     }
 
@@ -67,7 +69,6 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
 
     @Override
     public void onBindViewHolder(KeranjangAdapter.ViewHolder holder, final int position) {
-        Session session = new Session(view.getContext());
         Cart keranjang = this.listKeranjang.get(position);
         Item barang = keranjang.getItem();
 
@@ -87,30 +88,16 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.View
             .placeholder(R.drawable.ic_autorenew_24dp)
             .into(holder.gambar);
 
-        holder.btnRemove.setOnClickListener((View v) -> {
-            Retrofit retrofit = RetrofitLibrary.getRetrofit();
-            OnlineShopService service = retrofit.create(OnlineShopService.class);
+        holder.btnEdit.setOnClickListener((View v) -> {
+            Intent intent = new Intent(view.getContext(), EditItemCartActivity.class);
+            intent.putExtra("item_id", barang.getId());
+            intent.putExtra("item_price", barang.getPrice());
+            intent.putExtra("item_name", barang.getName());
+            intent.putExtra("item_picture", barang.getPicture());
+            intent.putExtra("item_qty", qty);
+            intent.putExtra("item_note", keranjang.getNote());
 
-            View loadingView = ((Activity) view.getContext()).getLayoutInflater().inflate(R.layout.alert_loading, null);
-            AlertDialog loadingAlertDialog = new AlertDialog.Builder(view.getContext())
-                .setView(loadingView)
-                .create();
-
-            loadingAlertDialog.show();
-
-            service.deleteItemInCart("Bearer " + session.getToken(), barang.getId()).enqueue(new Callback<Base>() {
-                @Override
-                public void onResponse(Call<Base> call, Response<Base> response) {
-                    listKeranjang.remove(position);
-                    notifyDataSetChanged();
-                    loadingAlertDialog.cancel();
-                }
-
-                @Override
-                public void onFailure(Call<Base> call, Throwable t) {
-                    loadingAlertDialog.cancel();
-                }
-            });
+            view.getContext().startActivity(intent);
         });
     }
 
