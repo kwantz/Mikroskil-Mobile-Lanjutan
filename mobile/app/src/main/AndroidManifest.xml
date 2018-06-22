@@ -12,12 +12,16 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".main.MainActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
+        <activity android:name=".order.OrderActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".search.SearchActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
+        <activity android:name=".address.AddressActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".profile.ProfileActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".security.SecurityActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".category.CategoryActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".searchitem.SearchItemActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".itemdetail.ItemDetailActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
+        <activity android:name=".addaddress.AddAddressActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
+        <activity android:name=".transaction.TransactionActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".notification.NotificationActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".edititemcart.EditItemCartActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
         <activity android:name=".searchcategory.SearchCategoryActivity" android:theme="@style/AppTheme.OverlapSystemBar"/>
