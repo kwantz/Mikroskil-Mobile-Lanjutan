@@ -22,7 +22,9 @@ module.exports = {
     const data = await sequelize.query(`
       SELECT cart.*
       FROM cart
-      WHERE cart.profile_id = :user
+      LEFT JOIN orders ON cart.id = orders.cart_id
+      WHERE orders.id IS NULL
+      AND cart.profile_id = :user
       AND cart.item_id = :item`, {
       type: Sequelize.QueryTypes.SELECT,
       replacements: {
@@ -32,5 +34,22 @@ module.exports = {
     })
 
     return data[0]
+  },
+
+  async findByTransaction (transaction) {
+    const data = await sequelize.query(`
+      SELECT cart.*
+      FROM cart
+      INNER JOIN orders ON cart.id = orders.cart_id
+      INNER JOIN transaction on transaction.id = orders.transaction_id
+      WHERE transaction.id = :transaction
+    `, {
+      type: Sequelize.QueryTypes.SELECT,
+      replacements: {
+        transaction: transaction
+      }
+    })
+
+    return data
   }
 }

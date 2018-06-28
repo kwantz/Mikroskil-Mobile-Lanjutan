@@ -113,8 +113,8 @@ public class EditItemCartActivity extends AppCompatActivity {
         btnRemove.setOnClickListener((View v) -> {
             removeItemAlertDialog.show();
 
-            Button confirm = removeItemView.findViewById(R.id.btn_confirm);
-            Button cancel = removeItemAlertDialog.findViewById(R.id.btn_cancel);
+            TextView confirm = removeItemView.findViewById(R.id.btn_confirm);
+            TextView cancel = removeItemView.findViewById(R.id.btn_cancel);
 
             confirm.setOnClickListener((View view) -> {
                 removeItemAlertDialog.cancel();

@@ -21,12 +21,24 @@ public class Profile {
     @Expose
     private String email;
 
+    @SerializedName("current_address")
+    @Expose
+    private int currentAddress;
+
     public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public void setCurrentAddress(int currentAddress) {
+        this.currentAddress = currentAddress;
     }
 
     public String getNumber() {

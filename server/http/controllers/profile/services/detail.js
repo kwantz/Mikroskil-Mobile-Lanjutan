@@ -3,7 +3,6 @@ const profileRepo      = require('../../../queries/profile')
 const { errorHandler } = require('../../global')
 
 module.exports = async (req, res, next) => {
-  console.log('masuk sini')
   let profile = await profileRepo.findOneByUserId(req.profile)
   let user = await userRepo.findOneById(req.profile)
 

@@ -3,9 +3,9 @@ const { sequelize, Sequelize } = require('../models')
 module.exports = {
   async findAll (profile) {
     const data = await sequelize.query(`
-      SELECT transaction.*
-      FROM transaction
-      WHERE transaction.profile_id = :profile
+      SELECT address.*
+      FROM address
+      WHERE address.profile_id = :profile
     `, {
       type: Sequelize.QueryTypes.SELECT,
       replacements: {
@@ -16,14 +16,20 @@ module.exports = {
     return data
   },
 
-  async findOneById (transaction) {
-    const data = await sequelize.query(`SELECT * FROM transaction WHERE id = :id`, {
+  async findOneById (profile, address) {
+    const data = await sequelize.query(`
+      SELECT address.*
+      FROM address
+      WHERE address.profile_id = :profile
+      AND address.id = :address
+    `, {
       type: Sequelize.QueryTypes.SELECT,
       replacements: {
-        id: transaction
+        profile: profile,
+        address: address
       }
     })
 
     return data[0]
-  }
+  },
 }

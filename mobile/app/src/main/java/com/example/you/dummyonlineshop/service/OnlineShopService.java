@@ -1,11 +1,16 @@
 package com.example.you.dummyonlineshop.service;
 
 import com.example.you.dummyonlineshop.data.Base;
+import com.example.you.dummyonlineshop.data.get.AddressData;
+import com.example.you.dummyonlineshop.data.get.AddressDetailData;
 import com.example.you.dummyonlineshop.data.get.CartData;
 import com.example.you.dummyonlineshop.data.get.FavoriteData;
 import com.example.you.dummyonlineshop.data.get.ItemData;
 import com.example.you.dummyonlineshop.data.get.LoginData;
 import com.example.you.dummyonlineshop.data.get.ProfileData;
+import com.example.you.dummyonlineshop.data.get.TransactionData;
+import com.example.you.dummyonlineshop.data.get.TransactionDetailData;
+import com.example.you.dummyonlineshop.data.post.AddressBody;
 import com.example.you.dummyonlineshop.data.post.CartBody;
 import com.example.you.dummyonlineshop.data.post.FavoriteBody;
 import com.example.you.dummyonlineshop.data.post.LoginBody;
@@ -119,4 +124,35 @@ public interface OnlineShopService {
 
     @GET("/profile")
     Call<ProfileData> detailProfile(@Header("Authorization") String auth);
+
+    @GET("/profile/address/{address}")
+    Call<Base> setCurrentAddress (@Header("Authorization") String auth, @Path("address") int addressId);
+
+
+    /**
+     * Address API Service
+     */
+
+    @POST("/address")
+    Call<Base> addAddress(@Header("Authorization") String auth, @Body AddressBody addressBody);
+
+    @GET("/address/{address}")
+    Call<AddressDetailData> getAddressDetail(@Header("Authorization") String auth, @Path("address") int addressId);
+
+    @GET("/address")
+    Call<AddressData> getAddress(@Header("Authorization") String auth);
+
+
+    /**
+     * Transaction API Service
+     */
+
+    @GET("/transaction")
+    Call<TransactionData> getTransaction(@Header("Authorization") String auth);
+
+    @GET("/transaction/{transaction}")
+    Call<TransactionDetailData> getTransactionDetail(@Header("Authorization") String auth, @Path("transaction") int transactionId);
+
+    @POST("/transaction")
+    Call<TransactionDetailData> addTransaction(@Header("Authorization") String auth);
 }

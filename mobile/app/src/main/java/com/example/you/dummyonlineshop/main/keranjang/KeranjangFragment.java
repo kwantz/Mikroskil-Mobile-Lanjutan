@@ -1,5 +1,6 @@
 package com.example.you.dummyonlineshop.main.keranjang;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.example.you.dummyonlineshop.adapter.KeranjangAdapter;
 import com.example.you.dummyonlineshop.data.Cart;
 import com.example.you.dummyonlineshop.data.Item;
 import com.example.you.dummyonlineshop.library.DisplayContentView;
+import com.example.you.dummyonlineshop.order.OrderActivity;
 
 import java.util.List;
 
@@ -63,7 +66,12 @@ public class KeranjangFragment extends Fragment implements KeranjangContract.Vie
         setupDisplayView();
         mPresenter.setupKeranjang();
 
-        setHasOptionsMenu(true);
+        Button btnBayar = view.findViewById(R.id.btn_bayar);
+        btnBayar.setOnClickListener((View v) -> {
+            Intent intent = new Intent(view.getContext(), OrderActivity.class);
+            view.getContext().startActivity(intent);
+        });
+
         return view;
     }
 

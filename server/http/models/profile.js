@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       user_id: { type: DataTypes.INTEGER, allowNull: false, unique: true },
       name   : { type: DataTypes.STRING(100), allowNull: false, unique: true },
       phone  : { type: DataTypes.STRING(12), allowNull: false },
-      picture: { type: DataTypes.STRING(255), allowNull: true }
+      picture: { type: DataTypes.STRING(255), allowNull: true },
+      current_address: { type: DataTypes.INTEGER, defaultValue: '0' }
     },
     {
       tableName      : 'profile',

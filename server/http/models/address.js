@@ -3,12 +3,10 @@ module.exports = (sequelize, DataTypes) => {
   return sequelize.define('address',
     {
       id        : { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-      city_id   : { type: DataTypes.INTEGER, allowNull: false },
       profile_id: { type: DataTypes.INTEGER, allowNull: false },
+      city      : { type: DataTypes.STRING(100), allowNull: false },
       name      : { type: DataTypes.STRING(100), allowNull: false },
-      postcode  : { type: DataTypes.STRING(10), allowNull: false },
-      latitude  : { type: DataTypes.DECIMAL },
-      longitude : { type: DataTypes.DECIMAL }
+      postcode  : { type: DataTypes.STRING(10), allowNull: false }
     },
     {
       tableName      : 'address',
